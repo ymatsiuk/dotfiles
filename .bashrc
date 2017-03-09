@@ -7,7 +7,7 @@
 
 [[ $DISPLAY ]] && shopt -s checkwinsize
 
-PS1='[\u@\h \W]\$ '
+#PS1='[\u@\h \W]\$ '
 
 case ${TERM} in
   xterm*|rxvt*|Eterm|aterm|kterm|gnome*)
@@ -29,3 +29,5 @@ export HISTFILESIZE=${HISTSIZE}
 export HISTCONTROL=ignoreboth
 export JAVA_FONTS=/usr/share/fonts/TTF
 export KUBE_EDITOR="vim"
+
+PS1="\n\$(if [[ \$? == 0 ]]; then echo \"\[\033[0;34m\]\"; else echo \"\[\033[0;31m\]\"; fi)\342\226\210\342\226\210 \e[1m[ \t ] [ \u@\h:\w ] \n\[\033[0m\]\342\226\210\342\226\210 "
