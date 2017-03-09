@@ -21,7 +21,7 @@ esac
 
 [ -r /usr/share/bash-completion/bash_completion   ] && . /usr/share/bash-completion/bash_completion
 
-. .alias
+. ~/.alias
 
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
 export HISTSIZE=10000
