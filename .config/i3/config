@@ -5,7 +5,7 @@
 # this file and re-run i3-config-wizard(1).
 #
 
-exec feh --bg-scale ~/Downloads/Material\ Wallpaper\ 2.0.png
+exec ~/.bgchange.sh 
 exec compton --xrender-sync --xrender-sync-fence --config ~/.compton
 
 # i3 config file (v4)
