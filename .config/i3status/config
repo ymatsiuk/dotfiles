@@ -67,6 +67,6 @@ disk "/" {
 }
 
 cpu_temperature 0 {
-	format = " [%degrees °C]"
+	FORMAT = " [%degrees °C]"
 	max_threshold = 60
 }
