@@ -14,6 +14,7 @@ general {
         interval = 5
 }
 
+order += "volume master"
 order += "cpu_temperature 0"
 #order += "disk /"
 #order += "run_watch DHCP"
@@ -23,6 +24,12 @@ order += "ethernet _first_"
 order += "battery 0"
 #order += "load"
 order += "tztime local"
+
+volume master {
+	format = " [%volume]"
+        format_muted = " [muted (%volume)]"
+        device = "pulse:alsa_output.pci-0000_00_1b.0.analog-stereo"
+}
 
 wireless _first_ {
         format_up = " [(%essid) %ip]"
@@ -39,7 +46,7 @@ battery 0 {
 	integer_battery_capacity = true
 	threshold_type = time
 	low_threshold = 20
-        format = "[%status %percentage %remaining]"
+        format = "%status [%percentage %remaining]"
 	format_down= "No battery"
 	status_chr = " "
         status_bat = " "
