@@ -27,8 +27,6 @@ Xft.dpi: 96
 URxvt.font: 	xft: xos4 Terminus:size=11
 URxvt.boldFont: xft: xos4 Terminus:style=Bold:size=11
 
-urxvt*foreground: white
-
 *color0:  #2E3436
 *color1:  #a40000
 *color2:  #4E9A06

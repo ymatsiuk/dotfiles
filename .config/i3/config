@@ -244,7 +244,7 @@ assign [class="^Thunar$"] $w0
 #exec sky
 exec --no-startup-id chromium --auth-server-whitelist=*.kramponline.com
 #exec dtclient
-exec --no-startup-id urxvt
+exec --no-startup-id termite
 exec --no-startup-id remmina
 exec --no-startup-id subl3
 exec --no-startup-id oracle-sqldeveloper 
