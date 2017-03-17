@@ -1,0 +1,62 @@
+# https://camo.githubusercontent.com/cdb2f2e986c564b515c0c698e6c45b4ab5d725a9/687474703a2f2f692e696d6775722e636f6d2f776136363678672e706e67
+
+separator=false
+separator_block_width=5
+border_top=0
+border_left=0
+border_right=0
+border_bottom=3
+
+[volume]
+label= 
+command= pamixer --get-volume ; [[ -z "${BLOCK_BUTTON}" ]] || pavucontrol
+interval=10
+signal=1
+markup=pango
+border=#cc241d 
+#red
+
+[brightness]
+label= 
+command= printf "%.0f " $(xbacklight -get)
+interval=20
+signal=2
+border=#d79921 
+#yellow
+
+[wireless]
+label= 
+command=[[ -z "$(iwgetid -r)" ]] || echo "$(iwgetid -r) "
+interval=10
+border=#98971a 
+#green
+
+[ethernet]
+label= 
+command=ip a s enp0s25 |awk '/inet /{print $2}'
+interval=10
+border=#d65d0e 
+#orange
+
+[battery]
+label= 
+command=acpi -b|awk '{print $4}'
+interval=persist
+border=#458588 
+#blue
+
+[temperature]
+label= 
+command= sensors|grep Core|awk '{print $3}'|xargs echo
+interval=5
+border=#b16286 
+#purple
+
+[time]
+label=  
+command=echo "`date +'%A %d %b %Y'` <b>`date +'%T'`</b> "; [[ -z "${BLOCK_BUTTON}" ]] || gsimplecal &
+interval=1
+markup=pango
+border=#928374 
+#gray
+separator_block_width=0

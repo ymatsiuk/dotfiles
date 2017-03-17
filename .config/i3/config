@@ -47,7 +47,7 @@ font pango:FontAwesome 10, xos4 Terminus 9
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Return exec termite
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -192,7 +192,7 @@ bindsym $mod+r mode "resize"
 # finds out, if available)
 bar {
     #font pango:FontAwesome 10, Terminus 9
-    status_command i3status
+    status_command i3blocks
     i3bar_command i3bar -t
     #height 25
     #status_command ~/bumblebee-status/bumblebee-status -m nic cpu memory battery date time -p time.format="%H:%M" date.format="%a, %b %d %Y" -t solarized-powerline
@@ -200,7 +200,7 @@ bar {
     colors{
         #background #00000000
         #statusline #00000000
-	background #2f343f
+	background #282828
 	statusline #ffffff
 	separator #2f343f
     }
@@ -221,10 +221,12 @@ for_window [window_role="Preferences"] floating enable
 for_window [window_type="dialog"] floating enable
 for_window [window_type="menu"] floating enable
 
+for_window [class="(?i)gsimplecal"] floating enable
 
 for_window [class="^.*"] border pixel 0 
 
 assign [class="^URxvt$"] $w1
+assign [class="^Termite"] $w1
 assign [class="^Chromium$"] $w2
 assign [class="^Firefox$"] $w3
 assign [class="^skypeforlinux$"] $w4
