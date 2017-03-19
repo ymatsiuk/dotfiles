@@ -225,9 +225,10 @@ for_window [window_role="Preferences"] floating enable
 
 for_window [window_type="dialog"] floating enable
 for_window [window_type="menu"] floating enable
+
 for_window [class="(?i)xarchiver"] floating enable
 for_window [class="(?i)gsimplecal"] floating enable, move position mouse, move down -19 px
-
+for_window [class="(?i)lxappearance"] floating enabled
 for_window [class="^.*"] border pixel 0 
 
 assign [class="^URxvt$"] $w1
