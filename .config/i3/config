@@ -111,11 +111,11 @@ bindsym $mod+a focus parent
 
 set $w1 "1:term "
 set $w2 "2:chrome " 
-set $w3 "3:idea " 
-set $w4 "4:sublime " 
+set $w3 "3:ff " 
+set $w4 "4:subl " 
 set $w5 "5:rdp " 
 set $w6 "6:sql " 
-set $w7 "7:rdp " 
+set $w7 "7:idea " 
 set $w8 "8:mail " 
 set $w9 "9:dynatrace " 
 set $w0 "10:thunar " 
@@ -230,26 +230,22 @@ for_window [class="(?i)xarchiver"] floating enable
 for_window [class="(?i)gsimplecal"] floating enable, move position mouse, move down -19 px
 for_window [class="(?i)lxappearance"] floating enabled
 for_window [class="^.*"] border pixel 0 
+for_window [class="(?i)dtclient" instance="dtclient" window_role="^floating$"] floating enable
 
-assign [class="^URxvt$"] $w1
-assign [class="^Termite"] $w1
-assign [class="^Chromium$"] $w2
-assign [class="^Firefox$"] $w3
-assign [class="^skypeforlinux$"] $w4
-assign [class="^Pidgin$"] $w5
+assign [class="(?i)urxvt"] $w1
+assign [class="(?i)termite"] $w1
+assign [class="(?i)chromium"] $w2
+assign [class="(?i)firefox"] $w3
+assign [class="(?i)skypeforlinux"] $w4
+assign [class="(?i)pidgin"] $w5
+assign [class="(?I)thunar"] $w0
+assign [class="(?i)remmina"] $w5
+assign [class="(?i)subl3"] $w4
 assign [class="sun-awt-X11-XDialogPeer" window_role="oracle-ide-osgi-boot-OracleIdeLauncher"] $w6
-assign [class="sun-awt-X11-XFramePeer" window_role="jetbrains-idea-ce"] $w3
-#for_window [class="^Pidgin$" window_role="buddy_list"] floating disable; layout stacking; move left; resize shrink right 31px or 31 ppt
-#for_window [class="^Pidgin$" window_role="^conversation$"] resize grow width 0 px or 30 ppt 
+assign [class="sun-awt-X11-XFramePeer" window_role="jetbrains-idea-ce"] $w7
 assign [instance="sun-awt-X11-XFramePeer" title="^Oracle*"] $w6
-assign [class="^Remmina$"] $w5
-assign [class="^Subl3$"] $w4
-#assign [class="Dtclient" instance="dtclient"] $w9
-for_window [class="Dtclient" instance="dtclient" window_role="^floating$"] floating enable
-assign [class="^Thunar$"] $w0
 
-#exec skypeforlinux
-#exec sky
+
 exec --no-startup-id chromium --auth-server-whitelist=*.kramponline.com
 #exec --no-startup-id dtclient
 exec --no-startup-id termite
