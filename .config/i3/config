@@ -237,7 +237,7 @@ assign [class="(?i)chromium"] $w2
 assign [class="(?i)firefox"] $w3
 assign [class="(?i)skypeforlinux"] $w4
 assign [class="(?i)pidgin"] $w5
-assign [class="(?I)thunar"] $w0
+assign [class="(?i)thunar"] $w0
 assign [class="(?i)remmina"] $w5
 assign [class="(?i)subl3"] $w4
 assign [class="sun-awt-X11-XDialogPeer" window_role="oracle-ide-osgi-boot-OracleIdeLauncher"] $w6
