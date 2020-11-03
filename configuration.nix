@@ -63,7 +63,17 @@
 #  };
 
   environment.systemPackages = with pkgs; [
-    wget neovim alacritty firefox dmenu starship git wl-clipboard
+    alacritty
+    dmenu
+    firefox
+    git
+    htop
+    neovim
+    starship
+    tree
+    wget
+    wl-clipboard
+    zsh
     (
       pkgs.writeTextFile {
         name = "startsway";
@@ -80,6 +90,7 @@
       }
     )
   ];
+  environment.shells = [ pkgs.zsh ];
 
   systemd.user.targets.sway-session = {
     description = "Sway compositor session";
@@ -138,6 +149,9 @@
   hardware.pulseaudio.enable = true;
 
   users.users.ymatsiuk = {
+    home = "/home/ymatsiuk";
+    description = "Yurii Matsiuk";
+    shell = pkgs.zsh;
     isNormalUser = true;
     extraGroups = [ "wheel" "docker" ]; # Enable ‘sudo’ for the user.
   };
