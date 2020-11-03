@@ -54,13 +54,13 @@
     '';
   };
 
-#  environment = {
-#    etc = {
-#      "sway/config".source = ./dotfiles/sway/config;
-#      "xdg/waybar/config".source = ./dotfiles/waybar/config;
-#      "xdg/waybar/style.css".source = ./dotfiles/waybar/style.css;
-#    };
-#  };
+ environment = {
+   etc = {
+     "sway/config".source = ./dotfiles/sway/config;
+     # "xdg/waybar/config".source = ./dotfiles/waybar/config;
+     # "xdg/waybar/style.css".source = ./dotfiles/waybar/style.css;
+   };
+ };
 
   environment.systemPackages = with pkgs; [
     alacritty

@@ -1,0 +1,230 @@
+# Default config for sway
+#
+# Copy this to ~/.config/sway/config and edit it to your liking.
+#
+# Read `man 5 sway` for a complete reference.
+
+default_border pixel 2
+gaps inner 5
+gaps outer 5
+smart_gaps on
+smart_borders on
+
+set $font "pango:Iosevka Term 10"
+font $font
+exec MOZ_ENABLE_WAYLAND=1 MOZ_DBUS_REMOTE=1 firefox
+exec mako
+exec alacritty
+exec slack
+assign [class="Slack"] → $w2
+for_window [class="Slack"] move to workspace $w2
+assign [app_id="firefox"] → $w3
+for_window [app_id="firefox"] move to workspace $w3
+for_window [app_id="Alacritty"] move to workspace $w1
+
+# Sreen brightness controls
+exec brightnessctl set 20%
+bindsym XF86MonBrightnessUp exec brightnessctl set +5%
+bindsym XF86MonBrightnessDown exec brightnessctl set -5%
+
+exec swayidle -w timeout 300 "swaylock -f -c '$base00'" timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' before-sleep "swaylock -f -c '$base00'"
+
+### Variables
+#
+# Logo key. Use Mod1 for Alt.
+set $mod Mod4
+# Home row direction keys, like vim
+set $left h
+set $down j
+set $up k
+set $right l
+set $term alacritty
+set $menu BEMENU_BACKEND=wayland bemenu-run -p "run" --fn $font
+
+output * bg /home/ymatsiuk/Downloads/wallpaper-arch.png fill
+output eDP-1 scale 2.2
+output eDP-1 subpixel vbgr
+output eDP-1 scale_filter nearest
+
+  input "1739:30383:DELL07E6:00_06CB:76AF_Touchpad" {
+      dwt enabled
+      tap enabled
+      natural_scroll enabled
+      middle_emulation enabled
+  }
+    bindsym $mod+Return exec $term
+    bindsym $mod+Shift+q kill
+    bindsym $mod+d exec $menu
+    floating_modifier $mod normal
+    bindsym $mod+Shift+c reload
+    bindsym $mod+Shift+e exec swaymsg exit
+#
+# Moving around:
+#
+    # Move your focus around
+    bindsym $mod+$left focus left
+    bindsym $mod+$down focus down
+    bindsym $mod+$up focus up
+    bindsym $mod+$right focus right
+    # Or use $mod+[up|down|left|right]
+    bindsym $mod+Left focus left
+    bindsym $mod+Down focus down
+    bindsym $mod+Up focus up
+    bindsym $mod+Right focus right
+
+    # Move the focused window with the same, but add Shift
+    bindsym $mod+Shift+$left move left
+    bindsym $mod+Shift+$down move down
+    bindsym $mod+Shift+$up move up
+    bindsym $mod+Shift+$right move right
+    # Ditto, with arrow keys
+    bindsym $mod+Shift+Left move left
+    bindsym $mod+Shift+Down move down
+    bindsym $mod+Shift+Up move up
+    bindsym $mod+Shift+Right move right
+#
+# Workspaces:
+#
+
+    set $w1 1:term 
+    set $w2 2:slack 
+    set $w3 3:ff 
+    set $w4 4:code 
+    set $w5 5:music 
+    set $w6 6:chrome 
+    set $w7 7:external 
+    set $w8 8:remote 
+    set $w9 9:keybase 
+    set $w0 10:thunar 
+
+    # Switch to workspace
+    bindsym $mod+1 workspace $w1
+    bindsym $mod+2 workspace $w2
+    bindsym $mod+3 workspace $w3
+    bindsym $mod+4 workspace $w4
+    bindsym $mod+5 workspace $w5
+    bindsym $mod+6 workspace $w6
+    bindsym $mod+7 workspace $w7
+    bindsym $mod+8 workspace $w8
+    bindsym $mod+9 workspace $w9
+    bindsym $mod+0 workspace $w0
+    # Move focused container to workspace
+    bindsym $mod+Shift+1 move container to workspace $w1
+    bindsym $mod+Shift+2 move container to workspace $w2
+    bindsym $mod+Shift+3 move container to workspace $w3
+    bindsym $mod+Shift+4 move container to workspace $w4
+    bindsym $mod+Shift+5 move container to workspace $w5
+    bindsym $mod+Shift+6 move container to workspace $w6
+    bindsym $mod+Shift+7 move container to workspace $w7
+    bindsym $mod+Shift+8 move container to workspace $w8
+    bindsym $mod+Shift+9 move container to workspace $w9
+    bindsym $mod+Shift+0 move container to workspace $w0
+    # Note: workspaces can have any name you want, not just numbers.
+    # We just use 1-10 as the default.
+#
+# Layout stuff:
+#
+    # You can "split" the current object of your focus with
+    # $mod+b or $mod+v, for horizontal and vertical splits
+    # respectively.
+    bindsym $mod+b splith
+    bindsym $mod+v splitv
+
+    # Switch the current container between different layout styles
+    bindsym $mod+s layout stacking
+    bindsym $mod+w layout tabbed
+    bindsym $mod+e layout toggle split
+
+    # Make the current focus fullscreen
+    bindsym $mod+f fullscreen
+
+    # Toggle the current focus between tiling and floating mode
+    bindsym $mod+Shift+space floating toggle
+
+    # Swap focus between the tiling area and the floating area
+    bindsym $mod+space focus mode_toggle
+
+    # Move focus to the parent container
+    bindsym $mod+a focus parent
+#
+# Scratchpad:
+#
+    # Sway has a "scratchpad", which is a bag of holding for windows.
+    # You can send windows there and get them back later.
+
+    # Move the currently focused window to the scratchpad
+    bindsym $mod+Shift+minus move scratchpad
+
+    # Show the next scratchpad window or hide the focused scratchpad window.
+    # If there are multiple scratchpad windows, this command cycles through them.
+    bindsym $mod+minus scratchpad show
+#
+# Resizing containers:
+#
+mode "resize" {
+    # left will shrink the containers width
+    # right will grow the containers width
+    # up will shrink the containers height
+    # down will grow the containers height
+    bindsym $left resize shrink width 10px
+    bindsym $down resize grow height 10px
+    bindsym $up resize shrink height 10px
+    bindsym $right resize grow width 10px
+
+    # Ditto, with arrow keys
+    bindsym Left resize shrink width 10px
+    bindsym Down resize grow height 10px
+    bindsym Up resize shrink height 10px
+    bindsym Right resize grow width 10px
+
+    # Return to default mode
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+bindsym $mod+r mode "resize"
+
+set $base00 #262626
+set $base01 #3a3a3a
+set $base02 #4e4e4e
+set $base03 #8a8a8a
+set $base04 #949494
+set $base05 #dab997
+set $base06 #d5c4a1
+set $base07 #ebdbb2
+set $base08 #d75f5f
+set $base09 #ff8700
+set $base0A #ffaf00
+set $base0B #afaf00
+set $base0C #85ad85
+set $base0D #83adad
+set $base0E #d485ad
+set $base0F #d65d0e
+# Property Name         Border  BG      Text    Indicator Child Border
+client.focused          $base05 $base0D $base00 $base0D   $base0D
+client.focused_inactive $base01 $base01 $base05 $base03   $base01
+client.unfocused        $base01 $base00 $base05 $base01   $base01
+client.urgent           $base08 $base08 $base00 $base08   $base08
+client.placeholder      $base00 $base00 $base05 $base00   $base00
+client.background       $base07
+#
+# Status Bar:
+#
+# Read `man 5 sway-bar` for more information about this section.
+bar {
+    position bottom
+
+    # When the status_command prints a new line to stdout, swaybar updates.
+    # The default just shows the current date and time.
+    # status_command while date +'%Y-%m-%d %l:%M:%S %p'; do sleep 1; done
+    status_command i3blocks
+
+    colors {
+        statusline #ffffff
+        background #282828
+        separator #000000
+        focused_workspace  #282828    #282828         #d79921
+        inactive_workspace #282828    #282828         #ffffff
+        active_workspace   #282828    #282828         #ffffff
+    }
+}
+include /etc/sway/config.d/*
