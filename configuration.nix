@@ -36,6 +36,9 @@
     extraOptions = "--bip 172.18.0.1/16";
   };
 
+  programs.neovim = {
+    vimAlias = true;
+  };
   programs.sway = {
     enable = true;
     extraPackages = with pkgs; [
@@ -64,6 +67,7 @@
 
   environment.systemPackages = with pkgs; [
     alacritty
+    bat
     dmenu
     firefox
     git
