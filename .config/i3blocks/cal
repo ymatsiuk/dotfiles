@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+if [[ -z "${BLOCK_BUTTON}" ]]
+then
+echo "$(date +'%A %d %b %Y') <b>$(date +'%T')</b> "
+else
+echo "$(date +'%A %d %b %Y') <b>$(date +'%T')</b> "
+gsimplecal &
+fi

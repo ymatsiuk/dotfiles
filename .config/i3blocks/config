@@ -1,4 +1,4 @@
-# https://github.com/morhetz/gruvbox 
+# https://github.com/morhetz/gruvbox
 
 separator=false
 separator_block_width=10
@@ -7,56 +7,94 @@ border_left=0
 border_right=0
 border_bottom=3
 
-[volume]
-label= 
-command= pamixer --get-volume ; [[ -z "${BLOCK_BUTTON}" ]] || pavucontrol
-interval=10
-signal=1
+[kernel]
+command=uname -r
+label=
+interval=60
 markup=pango
-border=#cc241d 
+border=#D65D0E
+#blue
+
+[uptime]
+command=uptime -p
+label=
+interval=30
+markup=pango
+border=#8F3F71
+#purple
+
+[volume]
+command=/home/ymatsiuk/.config/i3blocks/cpu_usage
+label=
+interval=5
+markup=pango
+border=#FBF1C7
+#red
+
+[load]
+command=/home/ymatsiuk/.config/i3blocks/load_average
+label=
+interval=5
+markup=pango
+border=#928374
+#grey
+
+[volume]
+command=/home/ymatsiuk/.config/i3blocks/volume
+interval=once
+signal=30
+markup=pango
+border=#CC241D
 #red
 
 [brightness]
-label= 
-command= printf "%.0f " $(xbacklight -get)
-interval=20
-signal=2
-border=#d79921 
+command=/home/ymatsiuk/.config/i3blocks/brightness
+interval=once
+signal=29
+markup=pango
+border=#D79921
 #yellow
 
 [wireless]
-label= 
-command=[[ -z "$(iwgetid -r)" ]] || echo "$(iwgetid -r) "
+label=
+command=/home/ymatsiuk/.config/i3blocks/wifi
 interval=10
-border=#98971a 
+signal=28
+border=#98971A
 #green
 
-[ethernet]
-label= 
-command=ip a s enp0s25 |awk '/inet /{print $2}'
-interval=10
-border=#d65d0e 
-#orange
+#[internal]
+#label=
+#command=/home/ymatsiuk/.config/i3blocks/iface
+#interval=10
+#border=#D65D0E
+##orange
+
+#[external]
+#label=
+#command=/home/ymatsiuk/.config/i3blocks/external
+#interval=360
+#border=#689D6A
+##aqua
 
 [battery]
-label= 
-command=acpi -b|awk '{print $4 $5}'
+command=/home/ymatsiuk/.config/i3blocks/battery
 interval=10
-border=#458588 
+border=#458588
 #blue
 
 [temperature]
-label= 
-command= sensors|grep Core|awk '{print $3}'|xargs echo
+label=
+command=/home/ymatsiuk/.config/i3blocks/temperature
 interval=5
-border=#b16286 
+border=#B16286
 #purple
 
 [time]
-label=  
-command=echo "`date +'%A %d %b %Y'` <b>`date +'%T'`</b> "; [[ -z "${BLOCK_BUTTON}" ]] || gsimplecal &
+label=
+command=/home/ymatsiuk/.config/i3blocks/cal
 interval=1
 markup=pango
-border=#928374 
+border=#928374
 #gray
 separator_block_width=0
