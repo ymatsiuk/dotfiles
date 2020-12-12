@@ -1,7 +1,3 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
-
 { config, pkgs, ... }:
 
 {
@@ -13,6 +9,7 @@
       ./fonts.nix
       ./hardware-configuration.nix
       ./opengl.nix
+      ./neovim.nix
       ./pulseaudio.nix
       ./users.nix
     ];
@@ -31,21 +28,34 @@
   nixpkgs.config.packageOverrides = pkgs: {
     vaapiIntel = pkgs.vaapiIntel.override { enableHybridCodec = true; };
   };
-  environment.shells = [ pkgs.zsh ];
-  environment.variables = {
-    EDITOR = "nvim";
-    GDK_SCALE = "2";
-    GDK_DPI_SCALE = "0.5";
-    _JAVA_OPTIONS = "-Dsun.java2d.uiScale=2";
-  };
-  environment.systemPackages = with pkgs; [
-    wget neovim firefox alacritty bat git htop tree starship zsh dunst
-    xorg.xbacklight xorg.xcursorthemes starship
-    slack lastpass-cli lxappearance bluejeans-gui
-    acpi feh networkmanagerapplet libsecret
-  ];
 
-  environment.pathsToLink = [ "/libexec" ];
+  environment = {
+    shells = [ pkgs.zsh ];
+    variables = {
+      GDK_SCALE = "2";
+      GDK_DPI_SCALE = "0.5";
+      _JAVA_OPTIONS = "-Dsun.java2d.uiScale=2";
+    };
+    pathsToLink = [ "/libexec" ];
+    systemPackages = with pkgs; [
+      acpi
+      alacritty
+      bluejeans-gui
+      feh
+      firefox
+      git
+      htop
+      lastpass-cli
+      libsecret
+      lxappearance
+      networkmanagerapplet
+      slack
+      starship
+      tree
+      zsh
+    ];
+  };
+
   services.fwupd.enable = true;
   services.xserver = {
     enable = true;
@@ -56,18 +66,15 @@
       enable = true;
       disableWhileTyping = true;
       naturalScrolling = true;
+      accelSpeed = "0.5";
     };
 
-    desktopManager = {
-      xterm.enable = false;
-    };
-   
     displayManager = {
       defaultSession = "none+i3";
       lightdm.greeters.gtk.cursorTheme = {
         name = "Vanilla-DMZ";
-	package = pkgs.vanilla-dmz;
-	size = 64;
+        package = pkgs.vanilla-dmz;
+        size = 64;
       };
     };
 

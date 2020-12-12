@@ -3,13 +3,14 @@
 {
   security.sudo.wheelNeedsPassword = false;
   users = {
+    defaultUserShell = pkgs.zsh;
     users = {
       ymatsiuk = {
         description = "Yurii Matsiuk";
         extraGroups = [ "ymatsiuk" "wheel" "audio" "video" "networkmanager" "docker" ];
         home = "/home/ymatsiuk";
         isNormalUser = true;
-        shell = pkgs.zsh; 
+#        shell = pkgs.zsh; 
         uid = 1000;
       };
     };
