@@ -1,19 +1,20 @@
 { config, pkgs, ... }:
-
 {
   imports =
     [
       ./bluetooth.nix
-      ./compton.nix
       ./docker.nix
       ./fonts.nix
       ./hardware-configuration.nix
-      ./opengl.nix
       ./neovim.nix
+      ./opengl.nix
+      ./picom.nix
       ./pulseaudio.nix
+      ./redshift.nix
       ./users.nix
     ];
   nixpkgs.config.allowUnfree = true;
+  programs.nm-applet.enable = true;
 
   networking = {
     hostName = "xps";
@@ -38,21 +39,32 @@
     };
     pathsToLink = [ "/libexec" ];
     systemPackages = with pkgs; [
-      acpi
       alacritty
       bluejeans-gui
+      curl
+      coreutils
+      dmidecode
       feh
       firefox
       git
+      go
+      gsimplecal
       htop
       lastpass-cli
       libsecret
       lxappearance
       networkmanagerapplet
+      pavucontrol
+      pciutils
+      redshift
+      scrot
       slack
       starship
       tree
       zsh
+
+      #HW monitor:
+      acpi cpufrequtils fio i7z lm_sensors powertop smartmontools
     ];
   };
 
@@ -71,10 +83,11 @@
 
     displayManager = {
       defaultSession = "none+i3";
-      lightdm.greeters.gtk.cursorTheme = {
-        name = "Vanilla-DMZ";
-        package = pkgs.vanilla-dmz;
-        size = 64;
+      lightdm.greeters.gtk = {
+        theme.name = "Adwaita-black";
+        cursorTheme = {
+          size = 32;
+        };
       };
     };
 
@@ -83,6 +96,8 @@
       package = pkgs.i3-gaps;
       extraPackages = with pkgs; [
         dmenu
+        dunst
+        libnotify
         i3status
         i3lock-fancy-rapid
         i3blocks-gaps

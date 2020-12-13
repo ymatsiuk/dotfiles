@@ -1,4 +1,5 @@
 { config, pkgs, ... }:
+
 {
   fonts = {
     fontconfig = {
@@ -11,17 +12,17 @@
     };
     enableDefaultFonts = true;
     enableFontDir = true;
-    fonts = [
-      pkgs.corefonts
-      pkgs.fira-code
-      pkgs.font-awesome_4
-      pkgs.inconsolata
-      pkgs.iosevka
-      pkgs.powerline-fonts
-      pkgs.roboto
-      pkgs.source-code-pro
-      pkgs.terminus_font
-      pkgs.ubuntu_font_family
+    fonts = with pkgs; [
+      corefonts
+      fira-code
+      font-awesome_4
+      inconsolata
+      iosevka
+      powerline-fonts
+      roboto
+      source-code-pro
+      terminus_font
+      ubuntu_font_family
     ];
   };
 }
