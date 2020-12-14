@@ -1,4 +1,0 @@
-#!/bin/sh
-LEVEL=`printf "%.0f%%" $(xbacklight -get)`
-LABEL= 
-echo "$LABEL  $LEVEL"
