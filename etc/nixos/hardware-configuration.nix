@@ -9,18 +9,34 @@
     ];
 
   boot.blacklistedKernelModules = [ "psmouse" ];
-  boot.extraModulePackages = with config.boot.kernelPackages; [ acpi_call ];
-  boot.initrd.availableKernelModules = [ "xhci_pci" "nvme" "usb_storage" "sd_mod" "rtsx_pci_sdmmc" ];
+  boot.initrd.availableKernelModules = [
+    "xhci_pci"
+    "nvme"
+    # "usb_storage"
+    # "sd_mod"
+    # "rtsx_pci_sdmmc"
+    # "aes_x86_64"
+    "aesni_intel"
+    "cryptd"
+  ];
   boot.initrd.luks.devices = {
     xps = {
       device = "/dev/disk/by-uuid/fd985262-6ad9-46ac-8bc3-c6074d60e300";
       preLVM = true;
     };
   };
-  boot.initrd.kernelModules = [ "dm-snapshot" "i915" ];
-  boot.kernelModules = [ "kvm-intel" "acpi_call" ];
+  boot.initrd.kernelModules = [
+    # "dm-snapshot"
+    "i915"
+  ];
+  boot.kernelModules = [
+    "kvm-intel"
+  ];
   boot.kernelPackages = pkgs.linuxPackages_latest;
-  boot.kernelParams = [ "i915.enable_fbc=1" "i915.enable_psr=2" "mem_sleep_default=deep" ];
+  boot.kernelParams = [
+    "i915.enable_fbc=1"
+    "i915.enable_psr=2"
+  ];
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.systemd-boot.enable = true;
   boot.tmpOnTmpfs = true;
@@ -40,7 +56,10 @@
     ];
 
   powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
-  # high-resolution display
+  powerManagement.powertop.enable = true;
   hardware.video.hidpi.enable = lib.mkDefault true;
   hardware.cpu.intel.updateMicrocode = true;
+  hardware.acpilight.enable = true;
+  # what's that?
+  # hardware.enableAllFirmware = true;
 }

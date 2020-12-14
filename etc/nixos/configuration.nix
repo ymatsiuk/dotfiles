@@ -12,6 +12,7 @@
       ./pulseaudio.nix
       ./redshift.nix
       ./users.nix
+      ./zsh.nix
     ];
   nixpkgs.config.allowUnfree = true;
   programs.nm-applet.enable = true;
@@ -31,6 +32,7 @@
   };
 
   environment = {
+    homeBinInPath = true;
     shells = [ pkgs.zsh ];
     variables = {
       GDK_SCALE = "2";
@@ -69,6 +71,8 @@
   };
 
   services.fwupd.enable = true;
+  programs.ssh.askPassword = "";
+  services.gnome3.gnome-keyring.enable = true;
   services.xserver = {
     enable = true;
     dpi = 220;
