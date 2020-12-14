@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env sh
 
 DEFAULT=$(pactl info | awk '/Default Sink/{print $3}')
 INDEX=$(pactl list sinks short | awk "/$DEFAULT/"'{print $1}')

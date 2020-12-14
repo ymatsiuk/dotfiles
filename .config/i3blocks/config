@@ -9,7 +9,7 @@ border_bottom=3
 
 [kernel]
 command=uname -r
-label=
+# label=
 interval=60
 markup=pango
 border=#D65D0E
@@ -23,21 +23,21 @@ markup=pango
 border=#8F3F71
 #purple
 
-[volume]
-command=/home/ymatsiuk/.config/i3blocks/cpu_usage
-label=
-interval=5
-markup=pango
-border=#FBF1C7
-#red
+#[cpu_usage]
+#command=/home/ymatsiuk/.config/i3blocks/cpu_usage
+#label=
+#interval=5
+#markup=pango
+#border=#FBF1C7
+##red
 
-[load]
-command=/home/ymatsiuk/.config/i3blocks/load_average
-label=
-interval=5
-markup=pango
-border=#928374
-#grey
+#[load]
+#command=/home/ymatsiuk/.config/i3blocks/load_average
+#label=
+#interval=5
+#markup=pango
+#border=#928374
+##grey
 
 [volume]
 command=/home/ymatsiuk/.config/i3blocks/volume
